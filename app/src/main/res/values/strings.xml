@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">JetpackVideo</string>
+    <string name="title_home">首页</string>
+    <string name="title_sofa">沙发</string>
+    <string name="title_find">发现</string>
+    <string name="title_mine">我的</string>
+    <string name="like">赞</string>
+    <string name="dislike">踩</string>
+    <string name="feed_comment">评论</string>
+    <string name="share">分享</string>
+    <string name="has_follow">已关注</string>
+    <string name="unfollow">关注</string>
+    <string name="has_collect">已收藏</string>
+    <string name="collect">收藏</string>
+    <string name="feed_detail_type_image_title">帖子详情页</string>
+    <string name="author">作者</string>
+    <string name="comment_send_text">发送</string>
+    <string name="capture_tips">轻触拍照，长按录像</string>
+</resources>
