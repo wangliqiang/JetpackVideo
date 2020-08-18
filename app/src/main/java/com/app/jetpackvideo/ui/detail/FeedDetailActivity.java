@@ -13,8 +13,8 @@ import com.app.jetpackvideo.utils.StatusBar;
 
 public class FeedDetailActivity extends AppCompatActivity {
 
-    private static final String KEY_FEED = "KEY_FEED";
-    private static final String KEY_CATEGORY = "KEY_CATEGORY";
+    protected static final String KEY_FEED = "KEY_FEED";
+    protected static final String KEY_CATEGORY = "KEY_CATEGORY";
 
     private ViewHandler viewHandler = null;
 
@@ -50,5 +50,29 @@ public class FeedDetailActivity extends AppCompatActivity {
         if(viewHandler != null){
             viewHandler.onActivityResult(requestCode,resultCode,data);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (viewHandler != null) {
+            viewHandler.onPause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (viewHandler != null) {
+            viewHandler.onResume();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (viewHandler != null) {
+            viewHandler.onBackPressed();
+        }
+        super.onBackPressed();
     }
 }

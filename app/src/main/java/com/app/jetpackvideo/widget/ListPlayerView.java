@@ -29,12 +29,14 @@ import com.google.android.exoplayer2.ui.PlayerView;
 public class ListPlayerView extends FrameLayout implements IPlayTarget,
         PlayerControlView.VisibilityListener, Player.EventListener {
     private View bufferView;
-    private CusImageView cover, blur;
-    private ImageView playBtn;
-    private String mCategory;
-    private String mVideoUrl;
+    public CusImageView cover, blur;
+    protected ImageView playBtn;
+    protected String mCategory;
+    protected String mVideoUrl;
+    protected int mWidthPx;
+    protected int mHeightPx;
 
-    protected Boolean isPlaying = false;
+    protected Boolean isPlaying;
 
     public ListPlayerView(@NonNull Context context) {
         this(context, null);
@@ -44,8 +46,13 @@ public class ListPlayerView extends FrameLayout implements IPlayTarget,
         this(context, attrs, 0);
     }
 
+
     public ListPlayerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        this(context, attrs, defStyleAttr, 0);
+    }
+
+    public ListPlayerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         LayoutInflater.from(context).inflate(R.layout.layout_player_view, this, true);
 
         bufferView = findViewById(R.id.buffer_view);
@@ -65,6 +72,8 @@ public class ListPlayerView extends FrameLayout implements IPlayTarget,
     public void bindData(String category, int widthPx, int heightPx, String coverUrl, String videoUrl) {
         mCategory = category;
         mVideoUrl = videoUrl;
+        mWidthPx = widthPx;
+        mHeightPx = heightPx;
 
         cover.setImageUrl(cover, coverUrl, false);
         if (widthPx < heightPx) {
@@ -131,7 +140,6 @@ public class ListPlayerView extends FrameLayout implements IPlayTarget,
         pageListPlay.switchPlayerView(playerView, true);
         ViewParent parent = playerView.getParent();
         if (parent != this) {
-
             //把展示视频画面的View添加到ItemView的容器上
             if (parent != null) {
                 ((ViewGroup) parent).removeView(playerView);
@@ -213,7 +221,7 @@ public class ListPlayerView extends FrameLayout implements IPlayTarget,
         } else if (playbackState == Player.STATE_BUFFERING) {
             bufferView.setVisibility(VISIBLE);
         }
-        isPlaying = playbackState == Player.STATE_READY && exoPlayer.getBufferedPosition() != 0;
+        isPlaying = playbackState == Player.STATE_READY && exoPlayer.getBufferedPosition() != 0 && playWhenReady;
 
         playBtn.setImageResource(isPlaying ? R.drawable.icon_video_pause : R.drawable.icon_video_play);
     }
@@ -233,4 +241,10 @@ public class ListPlayerView extends FrameLayout implements IPlayTarget,
         playBtn.setVisibility(VISIBLE);
         playBtn.setImageResource(R.drawable.icon_video_play);
     }
+
+    public View getPlayController() {
+        PageListPlay pageListPlay = PageListPlayManager.get(mCategory);
+        return pageListPlay.controllerView;
+    }
+
 }

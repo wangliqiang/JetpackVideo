@@ -17,6 +17,8 @@
             name="fullscreen"
             type="java.lang.Boolean" />
 
+        <import type="com.app.jetpackvideo.utils.PixUtils" />
+
         <import type="com.app.jetpackvideo.utils.TimeUtils" />
 
         <import type="com.app.jetpackvideo.common.InteractionPresenter" />
@@ -25,6 +27,9 @@
             name="owner"
             type="androidx.lifecycle.LifecycleOwner" />
 
+        <variable
+            name="statusBarHeight"
+            type="java.lang.Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +38,7 @@
         android:layout_height="wrap_content"
         android:background="@color/transparent"
         android:paddingLeft="@{leftMargin}"
-        android:paddingTop="@dimen/dp_3"
+        android:paddingTop="@{statusBarHeight}"
         android:paddingBottom="@dimen/dp_3">
 
         <com.app.jetpackvideo.widget.CusImageView
@@ -55,6 +60,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:text="@{feed.author.name}"
+            android:textColor="@{fullscreen?@color/color_white:@color/color_000}"
             android:textSize="@dimen/sp_14"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/author_avatar"
@@ -71,6 +77,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
             android:text="@{TimeUtils.calculate(feed.createTime)}"
+            android:textColor="@{fullscreen?@color/color_white:@color/color_000}"
             android:textSize="@dimen/sp_12"
             android:textStyle="normal"
             app:layout_constraintLeft_toRightOf="@id/author_avatar"
@@ -100,7 +107,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@{fullscreen?@color/color_white:@color/transparent}"
             app:strokeWidth="1dp"
-            tools:backgroundTint="@color/color_theme"
+            tools:background="@color/color_theme"
             tools:text="已关注"
             tools:textColor="@color/color_white"
             tools:textSize="@dimen/sp_14" />

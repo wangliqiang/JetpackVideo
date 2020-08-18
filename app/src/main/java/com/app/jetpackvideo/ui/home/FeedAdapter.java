@@ -1,7 +1,6 @@
 package com.app.jetpackvideo.ui.home;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +73,7 @@ public class FeedAdapter extends AbsPagedListAdapter<Feed, FeedAdapter.ViewHolde
 
         holder.itemView.setOnClickListener(v -> {
             FeedDetailActivity.startFeedDetailActivity(mContext, feed, mCategory);
+            onStartFeedDetailActivity(feed);
             if (mFeedObserver == null) {
                 mFeedObserver = new FeedObserver();
                 LiveDataBus.get()
@@ -83,6 +83,9 @@ public class FeedAdapter extends AbsPagedListAdapter<Feed, FeedAdapter.ViewHolde
             mFeedObserver.setFeed(feed);
         });
 
+    }
+
+    public void onStartFeedDetailActivity(Feed feed) {
     }
 
     private FeedObserver mFeedObserver;

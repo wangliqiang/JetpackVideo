@@ -71,7 +71,7 @@ dependencies {
     // gesture imageview
     implementation 'com.github.chrisbanes:PhotoView:2.3.0@aar'
 
-    //aliyun oss
+    // aliyun oss
     api 'com.aliyun.dpa:oss-android-sdk:+'
 
     testImplementation 'junit:junit:4.13'

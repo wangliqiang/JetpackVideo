@@ -87,6 +87,12 @@ public class HomeFragment extends AbsListFragment<Feed, HomeViewModel> {
                     }
                 }
             }
+
+            @Override
+            public void onStartFeedDetailActivity(Feed feed) {
+                boolean isVideo = feed.itemType == Feed.TYPE_VIDEO;
+                shouldPause = !isVideo;
+            }
         };
     }
 

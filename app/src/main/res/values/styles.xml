@@ -56,4 +56,23 @@
             <enum name="bottom" value="4"></enum>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="view_anchor_behavior">
+        <attr name="anchorId" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="view_zoom_behavior">
+        <attr name="min_height" format="dimension" />
+        <attr name="scrolling_id" format="integer" />
+    </declare-styleable>
+
+    <style name="active" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_000</item>
+    </style>
+
+    <style name="inActive" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_999</item>
+    </style>
 </resources>
