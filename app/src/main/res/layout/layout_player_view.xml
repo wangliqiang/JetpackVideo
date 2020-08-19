@@ -29,6 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:indeterminate="true"
-        android:indeterminateTint="@color/color_theme_10"
+        android:indeterminateTint="@color/color_theme"
         android:visibility="gone" />
 </merge>

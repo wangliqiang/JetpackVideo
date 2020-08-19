@@ -40,7 +40,9 @@
             android:name=".ui.detail.FeedDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/feedDetail" />
-        <activity android:name=".ui.publish.PublishActivity" />
+        <activity
+            android:name=".ui.publish.PublishActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.publish.CaptureActivity"
             android:screenOrientation="portrait"

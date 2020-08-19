@@ -36,7 +36,7 @@ public class ListPlayerView extends FrameLayout implements IPlayTarget,
     protected int mWidthPx;
     protected int mHeightPx;
 
-    protected Boolean isPlaying;
+    protected Boolean isPlaying = false;
 
     public ListPlayerView(@NonNull Context context) {
         this(context, null);
