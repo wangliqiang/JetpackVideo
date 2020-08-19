@@ -18,8 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.Preview;
@@ -192,6 +192,12 @@ public class CaptureActivity extends AppCompatActivity {
                 .setTargetRotation(rotation)
                 .build();
 
+        ImageAnalysis imageAnalysis =
+                new ImageAnalysis.Builder()
+                        .setTargetResolution(resolution)
+                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                        .build();
+
         videoCapture = new VideoCapture.Builder()
                 .setCameraSelector(cameraSelector)
                 .setTargetAspectRatio(screenAspectRatio)
@@ -202,7 +208,7 @@ public class CaptureActivity extends AppCompatActivity {
 
         cameraProvider.unbindAll();
 
-        Camera camera = cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture, videoCapture);
+        cameraProvider.bindToLifecycle(this, cameraSelector, imageAnalysis, preview, imageCapture, videoCapture);
 
         preview.setSurfaceProvider(textureView.createSurfaceProvider());
     }
