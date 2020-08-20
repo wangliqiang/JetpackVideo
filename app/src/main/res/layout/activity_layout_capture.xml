@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextureView
-            android:id="@+id/texture_view"
+        <androidx.camera.view.PreviewView
+            android:id="@+id/preview_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -44,5 +44,14 @@
             app:progress_color="@color/color_theme"
             app:progress_width="@dimen/dp_4"
             app:radius="40dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/camera_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="26dp"
+            android:layout_marginBottom="75dp"
+            app:srcCompat="@drawable/icon_switch_camera" />
     </FrameLayout>
 </layout>
