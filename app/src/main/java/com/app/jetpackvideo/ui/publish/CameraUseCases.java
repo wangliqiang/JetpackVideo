@@ -17,22 +17,4 @@ public class CameraUseCases {
         }
         return AspectRatio.RATIO_16_9;
     }
-
-    public static boolean hasBackCamera(ProcessCameraProvider cameraProvider) {
-        try {
-            return cameraProvider.hasCamera(CameraSelector.DEFAULT_BACK_CAMERA) ? true : false;
-        } catch (CameraInfoUnavailableException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean hasFrontCamera(ProcessCameraProvider cameraProvider) {
-        try {
-            return cameraProvider.hasCamera(CameraSelector.DEFAULT_FRONT_CAMERA) ? true : false;
-        } catch (CameraInfoUnavailableException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 }

@@ -19,7 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.Preview;
@@ -60,14 +59,15 @@ public class CaptureActivity extends AppCompatActivity {
     public static final String RESULT_FILE_TYPE = "file_type";
 
     private boolean takingPicture;
-    private int lensFacing = CameraSelector.LENS_FACING_BACK;
     private Size resolution = new Size(1280, 720);
     private ImageCapture imageCapture;
-    private PreviewView textureView;
+    private PreviewView previewView;
     private VideoCapture videoCapture;
     private String outputFilePath;
 
     private ExecutorService cameraExecutor;
+    private ProcessCameraProvider cameraProvider;
+    private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
     public static void startActivityForResult(Activity activity) {
         Intent intent = new Intent(activity, CaptureActivity.class);
@@ -79,9 +79,10 @@ public class CaptureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_layout_capture);
         ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_CODE);
-        textureView = binding.textureView;
+        previewView = binding.previewView;
 
         cameraExecutor = Executors.newSingleThreadExecutor();
+        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
         binding.recordView.setOnRecordListener(new RecordView.onRecordListener() {
 
@@ -91,10 +92,7 @@ public class CaptureActivity extends AppCompatActivity {
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), System.currentTimeMillis() + ".jpeg");
                 binding.captureTips.setVisibility(View.INVISIBLE);
 
-                ImageCapture.Metadata metadata = new ImageCapture.Metadata();
-                metadata.setReversedHorizontal(lensFacing == CameraSelector.LENS_FACING_BACK);
-                ImageCapture.OutputFileOptions options = new ImageCapture.OutputFileOptions.Builder(file)
-                        .setMetadata(metadata).build();
+                ImageCapture.OutputFileOptions options = new ImageCapture.OutputFileOptions.Builder(file).build();
 
                 imageCapture.takePicture(options, cameraExecutor, new ImageCapture.OnImageSavedCallback() {
                     @Override
@@ -147,16 +145,10 @@ public class CaptureActivity extends AppCompatActivity {
     }
 
     private void bindCameraX() {
-        ListenableFuture cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         cameraProviderFuture.addListener(() -> {
             try {
-                ProcessCameraProvider cameraProvider = (ProcessCameraProvider) cameraProviderFuture.get();
-                if (CameraUseCases.hasBackCamera(cameraProvider)) {
-                    lensFacing = CameraSelector.LENS_FACING_BACK;
-                } else if (CameraUseCases.hasFrontCamera(cameraProvider)) {
-                    lensFacing = CameraSelector.LENS_FACING_FRONT;
-                }
-                bindPreview(cameraProvider);
+                cameraProvider = cameraProviderFuture.get();
+                bindCameraUseCases();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -166,37 +158,27 @@ public class CaptureActivity extends AppCompatActivity {
     }
 
     @SuppressLint("RestrictedApi")
-    private void bindPreview(ProcessCameraProvider cameraProvider) {
+    private void bindCameraUseCases() {
 
         int screenAspectRatio = CameraUseCases.aspectRatio(PixUtils.getScreenWidth(), PixUtils.getScreenHeight());
-        int rotation = textureView.getDisplay().getRotation();
+        int rotation = previewView.getDisplay().getRotation();
 
         CameraSelector cameraSelector = new CameraSelector.Builder()
-                .requireLensFacing(lensFacing)
+                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build();
 
         Preview preview = new Preview.Builder()
-                // We request aspect ratio but no resolution
+                .setCameraSelector(cameraSelector)
                 .setTargetAspectRatio(screenAspectRatio)
-                // Set initial target rotation
                 .setTargetRotation(rotation)
                 .build();
 
         imageCapture = new ImageCapture.Builder()
+                .setCameraSelector(cameraSelector)
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
-                // We request aspect ratio but no resolution to match preview config, but letting
-                // CameraX optimize for whatever specific resolution best fits our use cases
                 .setTargetAspectRatio(screenAspectRatio)
-                // Set initial target rotation, we will have to call this again if rotation changes
-                // during the lifecycle of this use case
                 .setTargetRotation(rotation)
                 .build();
-
-        ImageAnalysis imageAnalysis =
-                new ImageAnalysis.Builder()
-                        .setTargetResolution(resolution)
-                        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                        .build();
 
         videoCapture = new VideoCapture.Builder()
                 .setCameraSelector(cameraSelector)
@@ -208,9 +190,8 @@ public class CaptureActivity extends AppCompatActivity {
 
         cameraProvider.unbindAll();
 
-        cameraProvider.bindToLifecycle(this, cameraSelector, imageAnalysis, preview, imageCapture, videoCapture);
-
-        preview.setSurfaceProvider(textureView.createSurfaceProvider());
+        cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture, videoCapture);
+        preview.setSurfaceProvider(previewView.createSurfaceProvider());
     }
 
     @Override
