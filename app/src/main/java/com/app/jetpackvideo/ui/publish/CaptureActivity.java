@@ -59,6 +59,7 @@ public class CaptureActivity extends AppCompatActivity {
     public static final String RESULT_FILE_TYPE = "file_type";
 
     private boolean takingPicture;
+    private int lensFacing = CameraSelector.LENS_FACING_BACK;
     private Size resolution = new Size(1280, 720);
     private ImageCapture imageCapture;
     private PreviewView previewView;
@@ -92,7 +93,10 @@ public class CaptureActivity extends AppCompatActivity {
                 File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), System.currentTimeMillis() + ".jpeg");
                 binding.captureTips.setVisibility(View.INVISIBLE);
 
-                ImageCapture.OutputFileOptions options = new ImageCapture.OutputFileOptions.Builder(file).build();
+                ImageCapture.Metadata metadata = new ImageCapture.Metadata();
+                metadata.setReversedHorizontal(lensFacing == CameraSelector.LENS_FACING_FRONT);
+                ImageCapture.OutputFileOptions options = new ImageCapture.OutputFileOptions.Builder(file)
+                        .setMetadata(metadata).build();
 
                 imageCapture.takePicture(options, cameraExecutor, new ImageCapture.OnImageSavedCallback() {
                     @Override
@@ -134,6 +138,15 @@ public class CaptureActivity extends AppCompatActivity {
             }
         });
 
+        binding.cameraSwitch.setOnClickListener(v -> {
+            if (lensFacing == CameraSelector.LENS_FACING_BACK) {
+                lensFacing = CameraSelector.LENS_FACING_FRONT;
+            } else {
+                lensFacing = CameraSelector.LENS_FACING_BACK;
+            }
+            bindCameraUseCases();
+        });
+
         binding.actionClose.setOnClickListener(v -> finish());
     }
 
@@ -164,7 +177,7 @@ public class CaptureActivity extends AppCompatActivity {
         int rotation = previewView.getDisplay().getRotation();
 
         CameraSelector cameraSelector = new CameraSelector.Builder()
-                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                .requireLensFacing(lensFacing)
                 .build();
 
         Preview preview = new Preview.Builder()
