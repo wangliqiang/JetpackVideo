@@ -6,8 +6,11 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.annotation.ColorInt;
 
 public class StatusBar {
     /**
@@ -48,15 +51,14 @@ public class StatusBar {
         if (light) {
             visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         } else {
-            visibility &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            visibility &= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }
         decorView.setSystemUiVisibility(visibility);
     }
 
     public static int getStatusBarHeight(Context context) {
-        Resources resources = context.getResources();
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        int height = resources.getDimensionPixelSize(resourceId);
-        return height / 2;
+        // 获得状态栏高度
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return context.getResources().getDimensionPixelSize(resourceId) / 2;
     }
 }

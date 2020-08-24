@@ -96,7 +96,7 @@
             android:visibility="@{tagList.enterNum>0?View.VISIBLE:View.GONE}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_intro"
-            tools:text="tag-watcher" />
+            tools:text="watcher" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

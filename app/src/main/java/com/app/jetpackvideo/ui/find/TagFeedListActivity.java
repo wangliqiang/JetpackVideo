@@ -62,6 +62,7 @@ public class TagFeedListActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         StatusBar.fitSystemBar(this);
         super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_tag_feed_list);
 
         recyclerView = binding.refreshLayout.recyclerView;
@@ -183,7 +184,7 @@ public class TagFeedListActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-
+        tagFeedListViewModel.getDataSource().invalidate();
     }
 
     @Override
