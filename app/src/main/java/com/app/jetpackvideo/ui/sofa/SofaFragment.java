@@ -34,7 +34,7 @@ public class SofaFragment extends Fragment {
     private static final String TAG = "SofaFragment";
 
     private FragmentSofaBinding binding;
-    private ViewPager2 viewPager2;
+    protected ViewPager2 viewPager2;
     private TabLayout tabLayout;
     private SofaTab tabConfig;
     private List<SofaTab.Tabs> tabs;
@@ -119,11 +119,11 @@ public class SofaFragment extends Fragment {
         return tabView;
     }
 
-    private Fragment getTabFragment(int position) {
+    protected Fragment getTabFragment(int position) {
         return HomeFragment.newInstance(tabs.get(position).tag);
     }
 
-    private SofaTab getTabConfig() {
+    protected SofaTab getTabConfig() {
         return AppConfig.getSofatabConfig();
     }
 

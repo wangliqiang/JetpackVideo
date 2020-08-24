@@ -13,7 +13,12 @@
     <string name="has_collect">已收藏</string>
     <string name="collect">收藏</string>
     <string name="feed_detail_type_image_title">帖子详情页</string>
+    <string name="tag_list_item_hot_feed">条热门内容</string>
+    <string name="tag_follow">已关注</string>
+    <string name="tag_unfollow">关注</string>
     <string name="author">作者</string>
     <string name="comment_send_text">发送</string>
     <string name="capture_tips">轻触拍照，长按录像</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

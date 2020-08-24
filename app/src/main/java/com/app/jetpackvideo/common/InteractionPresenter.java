@@ -3,7 +3,6 @@ package com.app.jetpackvideo.common;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,6 +15,7 @@ import androidx.lifecycle.Observer;
 import com.alibaba.fastjson.JSONObject;
 import com.app.jetpackvideo.model.Comment;
 import com.app.jetpackvideo.model.Feed;
+import com.app.jetpackvideo.model.TagList;
 import com.app.jetpackvideo.model.User;
 import com.app.jetpackvideo.utils.AppGlobals;
 import com.app.jetpackvideo.utils.LiveDataBus;
@@ -296,6 +296,39 @@ public class InteractionPresenter {
 
                     @Override
                     public void onError(ApiResponse<JSONObject> response) {
+                        showToast(response.message);
+                    }
+                });
+    }
+
+    // 关注、取消关注一个帖子标签
+    public static void toggleTagLike(LifecycleOwner owner, TagList tagList) {
+        if (!isLogin(owner, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                toggleTagLikeInternal(tagList);
+            }
+        })) ;
+        else {
+            toggleTagLikeInternal(tagList);
+        }
+    }
+
+    private static void toggleTagLikeInternal(TagList tagList) {
+        ApiService.get("/tag/toggleTagFollow")
+                .addParam("tagId", tagList.tagId)
+                .addParam("userId", UserManager.get().getUserId())
+                .execute(new JSONCallback<JSONObject>() {
+                    @Override
+                    public void onSuccess(ApiResponse<JSONObject> response) {
+                        if (response.body != null) {
+                            Boolean follow = response.body.getBoolean("hasFollow");
+                            tagList.setHasFollow(follow);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiResponse response) {
                         showToast(response.message);
                     }
                 });
