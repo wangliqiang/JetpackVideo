@@ -3,26 +3,26 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/icon_tab_home"
         android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_sofa"
-        android:icon="@drawable/ic_baseline_dashboard_24"
+        android:icon="@drawable/icon_tab_sofa"
         android:title="@string/title_sofa" />
 
     <item
         android:id="@+id/navigation_publish"
-        android:icon="@drawable/ic_baseline_add_circle_24"
+        android:icon="@drawable/icon_tab_publish"
         android:title="" />
 
     <item
         android:id="@+id/navigation_find"
-        android:icon="@drawable/ic_baseline_find_in_page_24"
+        android:icon="@drawable/icon_tab_find"
         android:title="@string/title_find" />
 
     <item
         android:id="@+id/navigation_mine"
-        android:icon="@drawable/ic_baseline_account_box_24"
+        android:icon="@drawable/icon_tab_mine"
         android:title="@string/title_mine" />
 </menu>

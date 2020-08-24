@@ -23,11 +23,12 @@ import java.util.List;
 public class AppBottomBar extends BottomNavigationView {
 
     private static int[] sIcons = new int[]{
-            R.drawable.ic_baseline_home_24,
-            R.drawable.ic_baseline_dashboard_24,
-            R.drawable.ic_baseline_add_circle_24,
-            R.drawable.ic_baseline_find_in_page_24,
-            R.drawable.ic_baseline_account_box_24};
+            R.drawable.icon_tab_home,
+            R.drawable.icon_tab_sofa,
+            R.drawable.icon_tab_publish,
+            R.drawable.icon_tab_find,
+            R.drawable.icon_tab_mine};
+
     private BottomBar config;
 
     public AppBottomBar(Context context) {
