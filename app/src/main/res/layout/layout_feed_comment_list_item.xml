@@ -9,11 +9,11 @@
             name="comment"
             type="com.app.jetpackvideo.model.Comment" />
 
-        <import type="android.text.TextUtils"></import>
+        <import type="android.text.TextUtils" />
 
-        <import type="android.view.View"></import>
+        <import type="android.view.View" />
 
-        <import type="com.app.jetpackvideo.utils.TimeUtils"></import>
+        <import type="com.app.jetpackvideo.utils.TimeUtils" />
 
         <import type="com.app.jetpackvideo.common.InteractionPresenter" />
 
@@ -73,7 +73,7 @@
             app:cornerRadius="@dimen/dp_3"
             app:layout_constraintBaseline_toBaselineOf="@+id/author_name"
             app:layout_constraintLeft_toRightOf="@+id/author_name"
-            app:layout_constraintTop_toTopOf="parent"></com.google.android.material.button.MaterialButton>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/create_time"
@@ -87,7 +87,7 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/author_name"
             app:layout_constraintLeft_toRightOf="@+id/label_author"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="12天前"></TextView>
+            tools:text="12天前" />
 
         <TextView
             android:id="@+id/comment_like"
@@ -133,7 +133,7 @@
             app:layout_constraintLeft_toRightOf="@+id/author_avatar"
             app:layout_constraintRight_toLeftOf="@+id/comment_like"
             app:layout_constraintTop_toBottomOf="@+id/author_name"
-            tools:text="看见没。比甜蜜暴击好看一万倍！"></TextView>
+            tools:text="看见没。比甜蜜暴击好看一万倍！" />
 
         <FrameLayout
             android:id="@+id/comment_ext"

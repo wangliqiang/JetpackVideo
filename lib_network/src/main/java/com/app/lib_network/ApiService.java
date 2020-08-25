@@ -2,8 +2,6 @@ package com.app.lib_network;
 
 import android.util.Log;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

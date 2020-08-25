@@ -1,9 +1,6 @@
 package com.app.jetpackvideo.ui.publish;
 
 import androidx.camera.core.AspectRatio;
-import androidx.camera.core.CameraInfoUnavailableException;
-import androidx.camera.core.CameraSelector;
-import androidx.camera.lifecycle.ProcessCameraProvider;
 
 public class CameraUseCases {
 

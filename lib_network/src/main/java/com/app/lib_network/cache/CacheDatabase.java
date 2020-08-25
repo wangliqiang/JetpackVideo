@@ -6,8 +6,6 @@ import androidx.room.RoomDatabase;
 
 import com.app.lib_network.common.AppGlobals;
 
-import org.json.JSONObject;
-
 @Database(entities = {Cache.class}, version = 1, exportSchema = true)
 public abstract class CacheDatabase extends RoomDatabase {
 

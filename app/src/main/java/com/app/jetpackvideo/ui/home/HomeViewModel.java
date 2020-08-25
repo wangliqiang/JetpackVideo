@@ -1,7 +1,6 @@
 package com.app.jetpackvideo.ui.home;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.executor.ArchTaskExecutor;

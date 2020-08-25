@@ -93,7 +93,7 @@
                 android:text="@string/comment_send_text"
                 android:textColorHint="@color/color_white"
                 app:backgroundTint="@color/color_theme"
-                app:cornerRadius="6dp"></com.google.android.material.button.MaterialButton>
+                app:cornerRadius="6dp" />
         </LinearLayout>
     </LinearLayout>
 </layout>

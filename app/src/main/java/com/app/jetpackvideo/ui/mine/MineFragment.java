@@ -14,8 +14,8 @@ import com.app.jetpackvideo.R;
 import com.app.jetpackvideo.common.UserManager;
 import com.app.jetpackvideo.databinding.FragmentMineBinding;
 import com.app.jetpackvideo.model.User;
+import com.app.jetpackvideo.utils.StatusBar;
 import com.app.lib_nav_annotation.FragmentDestination;
-import com.jaeger.library.StatusBarUtil;
 
 @FragmentDestination(pageUrl = "main/tab/mine")
 public class MineFragment extends Fragment {
@@ -52,15 +52,23 @@ public class MineFragment extends Fragment {
                     .setNegativeButton(getString(R.string.fragment_my_logout_cancel), null)
                     .create().show();
         });
+
+        binding.goDetail.setOnClickListener(v -> ProfileActivity.startProfileActivity(getContext(), ProfileActivity.TAB_TYPE_ALL));
+        binding.userFeed.setOnClickListener(v -> ProfileActivity.startProfileActivity(getContext(), ProfileActivity.TAB_TYPE_FEED));
+        binding.userComment.setOnClickListener(v -> ProfileActivity.startProfileActivity(getContext(), ProfileActivity.TAB_TYPE_COMMENT));
+        binding.userFavorite.setOnClickListener(v -> UserBehaviorListActivity.startBehaviorListActivity(getContext(), UserBehaviorListActivity.BEHAVIOR_FAVORITE));
+        binding.userHistory.setOnClickListener(v -> UserBehaviorListActivity.startBehaviorListActivity(getContext(), UserBehaviorListActivity.BEHAVIOR_HISTORY));
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        StatusBar.lightStatusBar(getActivity(), false);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
+        StatusBar.lightStatusBar(getActivity(), hidden);
     }
 }

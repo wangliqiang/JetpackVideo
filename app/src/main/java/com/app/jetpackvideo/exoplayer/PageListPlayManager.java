@@ -1,15 +1,11 @@
 package com.app.jetpackvideo.exoplayer;
 
 import android.app.Application;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 import com.app.jetpackvideo.utils.AppGlobals;
-import com.google.android.exoplayer2.database.DefaultDatabaseProvider;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.exoplayer2.upstream.cache.Cache;

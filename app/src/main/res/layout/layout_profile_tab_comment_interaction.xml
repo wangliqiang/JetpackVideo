@@ -20,6 +20,7 @@
         <import type="com.app.jetpackvideo.common.InteractionPresenter" />
 
         <import type="android.content.Context" />
+
     </data>
 
     <LinearLayout
@@ -35,40 +36,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="@{()->InteractionPresenter.toggleFeedLike(lifeCycleOwner,feed)}"
-            android:text="@{feed.ugc.likeCount>0?StringConvert.convertFeedUgc(feed.ugc.likeCount):@string/like}"
-            android:textColor="@{feed.ugc.hasLiked?@color/color_theme:@color/color_3d3}"
+            android:onClick="@{()->InteractionPresenter.toggleCommentLike(lifeCycleOwner,feed.topComment)}"
+            android:text="@{feed.topComment.ugc.likeCount>0?StringConvert.convertFeedUgc(feed.topComment.ugc.likeCount):@string/like}"
+            android:textColor="@{feed.topComment.ugc.hasLiked?@color/color_theme:@color/color_3d3}"
             android:textSize="@dimen/sp_14"
             app:backgroundTint="@color/color_white"
             app:cornerRadius="0dp"
-            app:icon="@{feed.ugc.hasLiked?@drawable/icon_cell_liked:@drawable/icon_cell_like}"
+            app:icon="@{feed.topComment.ugc.hasLiked?@drawable/icon_cell_liked:@drawable/icon_cell_like}"
             app:iconGravity="textStart"
             app:iconPadding="4dp"
-            app:iconTint="@{feed.ugc.hasLiked?@color/color_theme:@color/color_3d3}"
+            app:iconTint="@{feed.topComment.ugc.hasLiked?@color/color_theme:@color/color_3d3}"
             tools:icon="@drawable/icon_cell_like"
-            tools:iconTint="@color/color_theme"
-            tools:text="赞"
-            tools:textColor="@color/color_theme" />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/diss"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="@{()->InteractionPresenter.toggleFeedDiss(lifeCycleOwner,feed)}"
-            android:text="踩"
-            android:textColor="@{feed.ugc.hasdiss?@color/color_theme:@color/color_3d3}"
-            android:textSize="@dimen/sp_14"
-            app:backgroundTint="@color/color_white"
-            app:cornerRadius="0dp"
-            app:icon="@{feed.ugc.hasdiss?@drawable/icon_cell_dissed:@drawable/icon_cell_diss}"
-            app:iconGravity="textStart"
-            app:iconPadding="4dp"
-            app:iconTint="@{feed.ugc.hasdiss?@color/color_theme:@color/color_3d3}"
-            tools:icon="@drawable/icon_cell_diss"
             tools:iconTint="@color/color_3d3"
-            tools:text="踩"
+            tools:text="1000"
             tools:textColor="@color/color_3d3" />
 
 
@@ -77,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@{feed.ugc.commentCount>0?StringConvert.convertFeedUgc(feed.ugc.commentCount):@string/feed_comment}"
+            android:text="@{feed.topComment.ugc.commentCount>0?StringConvert.convertFeedUgc(feed.topComment.ugc.commentCount):@string/feed_comment}"
             android:textColor="@color/color_3d3"
             android:textSize="@dimen/sp_14"
             app:backgroundTint="@color/color_white"
@@ -88,7 +68,7 @@
             app:iconTint="@color/color_3d3"
             tools:icon="@drawable/icon_cell_comment"
             tools:iconTint="@color/color_3d3"
-            tools:text="评论"
+            tools:text="1000"
             tools:textColor="@color/color_3d3" />
 
 
@@ -98,7 +78,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="@{()->InteractionPresenter.openShare(((Context)lifeCycleOwner),feed)}"
-            android:text="@{feed.ugc.shareCount>0?StringConvert.convertFeedUgc(feed.ugc.shareCount):@string/share}"
+            android:text="@{feed.topComment.ugc.shareCount>0?StringConvert.convertFeedUgc(feed.topComment.ugc.shareCount):@string/share}"
             android:textColor="@color/color_3d3"
             android:textSize="@dimen/sp_14"
             app:backgroundTint="@color/color_white"

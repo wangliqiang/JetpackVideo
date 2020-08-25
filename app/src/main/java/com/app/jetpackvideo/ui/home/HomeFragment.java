@@ -1,24 +1,15 @@
 package com.app.jetpackvideo.ui.home;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.paging.ItemKeyedDataSource;
 import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.jetpackvideo.R;
 import com.app.jetpackvideo.base.AbsListFragment;
 import com.app.jetpackvideo.exoplayer.PageListPlayDetector;
 import com.app.jetpackvideo.exoplayer.PageListPlayManager;

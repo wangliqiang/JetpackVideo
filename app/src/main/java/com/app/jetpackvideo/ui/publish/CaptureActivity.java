@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.Preview;
@@ -179,6 +180,15 @@ public class CaptureActivity extends AppCompatActivity {
         CameraSelector cameraSelector = new CameraSelector.Builder()
                 .requireLensFacing(lensFacing)
                 .build();
+
+        boolean hasAvailableCameraId = false;
+        hasAvailableCameraId = CameraX.hasCamera(cameraSelector);
+
+        if (!hasAvailableCameraId) {
+            showErrorToast("无可用的设备cameraId!,请检查设备的相机是否被占用");
+            finish();
+            return;
+        }
 
         Preview preview = new Preview.Builder()
                 .setCameraSelector(cameraSelector)

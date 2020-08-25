@@ -1,3 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.lib_network">
+<manifest package="com.app.lib_network">
 </manifest>

@@ -1,6 +1,5 @@
 package com.app.jetpackvideo.ui.detail;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 

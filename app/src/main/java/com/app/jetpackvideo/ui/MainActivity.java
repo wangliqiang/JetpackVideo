@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import com.app.jetpackvideo.R;
 import com.app.jetpackvideo.common.UserManager;
@@ -22,11 +20,11 @@ import com.app.jetpackvideo.utils.NavGraphBuilder;
 import com.app.jetpackvideo.utils.StatusBar;
 import com.app.jetpackvideo.widget.AppBottomBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 

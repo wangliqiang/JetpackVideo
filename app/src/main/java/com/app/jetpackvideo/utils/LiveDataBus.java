@@ -1,15 +1,11 @@
 package com.app.jetpackvideo.utils;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleEventObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-
-import com.app.jetpackvideo.model.Feed;
 
 import java.util.concurrent.ConcurrentHashMap;
 

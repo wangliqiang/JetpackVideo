@@ -1,19 +1,13 @@
 package com.app.jetpackvideo.base;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.paging.DataSource;
-import androidx.paging.ItemKeyedDataSource;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 import androidx.paging.PagedList.BoundaryCallback;
-
-import com.app.jetpackvideo.model.Feed;
 
 public abstract class AbsViewModel<T> extends ViewModel {
 

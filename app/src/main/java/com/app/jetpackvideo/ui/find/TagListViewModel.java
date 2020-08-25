@@ -1,12 +1,10 @@
 package com.app.jetpackvideo.ui.find;
 
 import android.annotation.SuppressLint;
-import android.nfc.Tag;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.executor.ArchTaskExecutor;
 import androidx.lifecycle.MutableLiveData;
-import androidx.paging.DataSource;
 import androidx.paging.ItemKeyedDataSource;
 
 import com.alibaba.fastjson.TypeReference;
