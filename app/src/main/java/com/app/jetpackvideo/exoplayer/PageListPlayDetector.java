@@ -77,12 +77,7 @@ public class PageListPlayDetector {
         mRecyclerView.post(delayAutoPlay);
     }
 
-    Runnable delayAutoPlay = new Runnable() {
-        @Override
-        public void run() {
-            autoPlay();
-        }
-    };
+    Runnable delayAutoPlay = () -> autoPlay();
 
     private final RecyclerView.AdapterDataObserver mDataObserver = new RecyclerView.AdapterDataObserver() {
         @Override
@@ -135,8 +130,8 @@ public class PageListPlayDetector {
         int[] location = new int[2];
         owner.getLocationOnScreen(location);
 
-        int center = location[1] + owner.getHeight() / 2;
-
+        int
+        center = location[1] + owner.getHeight() / 2;
         //承载视频播放画面的ViewGroup它需要至少一半的大小 在RecyclerView上下范围内
         return center >= rvLocation.first && center <= rvLocation.second;
     }
